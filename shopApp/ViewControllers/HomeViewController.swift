@@ -9,15 +9,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    
-    var products = Product.getProducts()
-    
+
+    @IBOutlet weak var tableVIew: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+
     }
     
 
@@ -26,28 +23,30 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        var products = products
-//        var saleProducts: [Product] = []
-//
-//        for product in products {
-//            if product.onSale == true {
-//                saleProducts.append(product)
-//            }
-//        }
-//        return saleProducts.count
-        return 3
+    
+    // MARK: - Methods
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
     }
-    
-
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        typeOfSales.count
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        typeOfSales[section]
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "productsTableViewCell") as? ProductsTableViewCell else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
+        
+        cell.collectionView.tag = indexPath.section
         
         return cell
     }
-    
-
-    
-    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = .white
+    }
 }

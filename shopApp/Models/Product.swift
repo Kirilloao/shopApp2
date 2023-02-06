@@ -5,6 +5,9 @@
 //  Created by Kirill Taraturin on 04.02.2023.
 //
 
+
+
+
 struct Product {
     let category: String
     let model: String
@@ -24,6 +27,8 @@ struct Product {
         "\(model) \(color)".trimmingCharacters(in: .whitespaces)
     }
 }
+
+var typeOfSales = ["Распродажа", "Бестселлер", "Рекомендуем"]
 
 extension Product {
     static func getRandomProducts(count: Int) -> [Product] {
