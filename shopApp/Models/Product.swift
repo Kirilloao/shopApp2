@@ -5,7 +5,11 @@
 //  Created by Kirill Taraturin on 04.02.2023.
 //
 
-
+struct myData {
+    let sectionType: String
+    let productImage: [String]
+    let productName: [String]
+}
 
 
 struct Product {
